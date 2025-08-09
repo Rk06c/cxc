@@ -1,0 +1,45 @@
+.service-details-container {
+  padding: 40px;
+  max-width: 800px;
+  margin: auto;
+  /* background: rgba(255, 255, 255, 0.08); */
+    background:black;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  animation: fadeIn 0.5s ease-in-out;
+  height: 400px;
+}
+
+.service-details-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  color: #00d8ff; /* React blue accent */
+}
+
+.service-details-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #00d8ff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #61dafb;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: Dark background for the page */
+

@@ -1,0 +1,52 @@
+import React from 'react'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header'
+import Hero from './components/Hero';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Service from './components/Service';
+import Footer from './components/Footer';
+import FrontendSkill from './components/FrontendSkill';
+import BackendSkill from './components/BackendSkill';
+import NotFound from './components/NotFount'; // ✅ Fixed import path
+import DSASection from './components/DSASection'; 
+function App() {
+  return (
+    <Router>
+      <div>
+        {/* <Header /> */}
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <Hero />
+                  <About />
+                  <FrontendSkill/>
+                  <BackendSkill/>
+                  <Projects />
+                  <Service/>
+                  <Contact/>
+                  <Footer/>
+                 
+                  
+                  </>
+              }
+            />
+            {/* <Route path="/about" element={<About />} /> */}
+            <Route path="/not-found" element={<NotFound />} />
+            <Route path="/dsa-learning" element={<DSASection />} />
+            </Routes>
+        </main>
+        </div>
+    </Router>
+
+    
+  )
+}
+
+export default App

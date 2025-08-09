@@ -1,0 +1,264 @@
+.tech-section h1, h2, h3 {
+      background: linear-gradient(90deg, #00d4ff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+
+  .tech-section  h1 {
+      font-size: 3em;
+      margin: 10px 0;
+    }
+
+  .tech-section  h2 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    /* Tech Section */
+    .tech-section {
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 20px;
+      font-family: mr;
+    }
+
+    .section-header p {
+      color: #ccc;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Content Layout */
+    .tech-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 768px) {
+      .tech-content {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .tech-description {
+      flex: 1;
+      text-align: left;
+    }
+
+    .tech-description p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    /* Infinite Scroll Containers */
+    .infinite-scroll-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin: 40px 0;
+      flex: 1;
+    }
+
+    .scroller {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      padding: 20px 0;
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Tech Cards */
+    .tech-card {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tech-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #00d4ff;
+    }
+
+    .tech-card span {
+      display: block;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 767px) {
+      .tech-section {
+        padding: 60px 0;
+      }
+      
+      .tech-card {
+        min-width: 100px;
+        padding: 15px;
+      }
+      
+      .tech-icon {
+        font-size: 2rem;
+      }
+    }
+
+     /* Frontend Backend Flow Section */
+    :root {
+      --fbf-accent-req:#00e5ff;
+      --fbf-accent-res:#00ff8f;
+      --fbf-bg:#000000;
+      --fbf-card-bg:rgba(0,0,0,.6);
+      --fbf-card-border:rgba(0,229,255,.4);
+      --fbf-text:#fff;
+      --fbf-sub:#ccc;
+    }
+
+    .front-back-flow-wrapper{
+      padding:60px 20px;
+      background:var(--fbf-bg);
+      text-align:center;
+    }
+    .front-back-flow-title{
+      margin:0 0 24px;
+      font-size:clamp(1.8rem,2.5vw,2.6rem);
+      background:linear-gradient(90deg,var(--fbf-accent-req),var(--fbf-accent-res));
+      -webkit-background-clip:text;
+      background-clip: text;
+      -webkit-text-fill-color:transparent;
+    }
+    .front-back-flow-panel{
+      max-width:900px;
+      margin:0 auto;
+      padding:20px;
+      background:var(--fbf-card-bg);
+      border:2px solid var(--fbf-card-border);
+      border-radius:20px;
+      box-shadow:0 0 24px rgba(0,229,255,.25);
+    }
+    .front-back-flow-svg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Browser frame */
+    .fbf-browser-frame{
+      fill:rgba(255,255,255,.04);
+      stroke:var(--fbf-accent-req);
+      stroke-width:2;
+    }
+    .fbf-browser-top{
+      fill:rgba(255,255,255,.08);
+      stroke:var(--fbf-accent-req);
+      stroke-width:2;
+    }
+    .fbf-dot{fill:#666;}
+    .fbf-dot.red{fill:#ff5f57;}
+    .fbf-dot.yellow{fill:#ffbd2e;}
+    .fbf-dot.green{fill:#27c93f;}
+
+    /* React atom */
+    .fbf-react-core{fill:var(--fbf-accent-res);}
+    .fbf-react-orbit{
+      fill:none;
+      stroke:var(--fbf-accent-req);
+      stroke-width:2;
+      opacity:.9;
+      transform-origin:center;
+      animation:react-spin 6s linear infinite;
+    }
+    .fbf-react-orbit.orbit2{animation-delay:.2s;}
+    .fbf-react-orbit.orbit3{animation-delay:.4s;}
+    @keyframes react-spin{to{transform:rotate(360deg);}}
+
+    /* Labels */
+    .fbf-label{
+      fill:var(--fbf-text);
+      font-family:Arial,sans-serif;
+      font-size:16px;
+      text-anchor:middle;
+    }
+    .fbf-label.backend{font-size:18px;}
+
+    /* Flow lines */
+    .fbf-flow-line{
+      fill:none;
+      stroke-width:4;
+      stroke-linecap:round;
+    }
+    .fbf-req-line{
+      stroke:var(--fbf-accent-req);
+      stroke-dasharray:10 10;
+      animation:fbf-dash-req 2s linear infinite;
+      filter:url(#fbf-glow-req);
+    }
+    .fbf-res-line{
+      stroke:var(--fbf-accent-res);
+      stroke-dasharray:10 10;
+      animation:fbf-dash-res 2s linear infinite;
+      filter:url(#fbf-glow-res);
+    }
+    @keyframes fbf-dash-req{to{stroke-dashoffset:-20;}}
+    @keyframes fbf-dash-res{to{stroke-dashoffset:-20;}}
+
+    /* Flow labels */
+    .fbf-flow-label{
+      font-family:Consolas,monospace;
+      font-size:14px;
+      text-anchor:middle;
+    }
+    .fbf-flow-label.req{fill:var(--fbf-accent-req);}
+    .fbf-flow-label.res{fill:var(--fbf-accent-res);}
+
+    /* Reuse your backend animations */
+    .server-light{
+      animation:blink 1.5s infinite ease-in-out;
+    }
+    @keyframes blink{
+      0%,100%{fill:#00ffcc;opacity:1;}
+      50%{fill:#00e5ff;opacity:.6;}
+    }
+    .flow-line{
+      stroke-dasharray:5;
+      stroke-dashoffset:100;
+      animation:flow 2s linear infinite;
+    }
+    @keyframes flow{
+      0%{stroke-dashoffset:100;}
+      100%{stroke-dashoffset:0;}
+    }
+
+    /* Responsive shrink */
+    @media (max-width:600px){
+      .fbf-label{font-size:14px;}
+      .fbf-flow-label{font-size:12px;}
+    }

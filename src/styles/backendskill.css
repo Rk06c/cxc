@@ -1,0 +1,266 @@
+ /* Backend Tech Section */
+    .tech-section1 h1, h2, h3 {
+      background: linear-gradient(90deg, #00d4ff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+    }
+
+  .tech-section1  h1 {
+      font-size: 3em;
+      margin: 10px 0;
+    }
+
+  .tech-section1  h2 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    /* Tech Section */
+    .tech-section1 {
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header1 {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 20px;
+      font-family: mr;
+    }
+
+    .section-header1 p {
+      color: #ccc;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Content Layout */
+    .tech-content1 {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 768px) {
+      .tech-content1 {
+        flex-direction: row-reverse;
+        align-items: center;
+      }
+    }
+
+    .tech-description1 {
+      flex: 1;
+      text-align: left;
+    }
+
+    .tech-description1 p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    /* Infinite Scroll Containers */
+    .infinite-scroll-container1 {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin: 40px 0;
+      flex: 1;
+    }
+
+    .scroller1 {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      padding: 20px 0;
+      animation: scroll1 30s linear infinite;
+      transform: translateX(-50%);
+    }
+
+    @keyframes scroll1 {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Tech Cards */
+    .tech-card1 {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .tech-card1:hover {
+      transform: translateY(-5px);
+    }
+
+    .tech-icon1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #00d4ff;
+    }
+
+    .tech-card span {
+      display: block;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 767px) {
+      .tech-section {
+        padding: 60px 0;
+      }
+      
+      .tech-card {
+        min-width: 100px;
+        padding: 15px;
+      }
+      
+      .tech-icon {
+        font-size: 2rem;
+      }
+    }
+    /* MERN Backend Flow Section */
+    :root {
+      --mern-accent: #00e5ff;
+      --mern-success: #00ff8f;
+      --mern-bg-dark: #000000;
+      --mern-card-bg: rgba(0, 0, 0, 0.6);
+      --mern-card-border: rgba(0, 229, 255, 0.6);
+      --mern-text-main: #ffffff;
+      --mern-text-sub: #cccccc;
+      --mern-route-bg: rgba(0, 229, 255, 0.1);
+      --mern-route-border: rgba(0, 229, 255, 0.5);
+    }
+
+    .mern-backend-section {
+      width: 100%;
+      padding: 60px 20px;
+      background: var(--mern-bg-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .mern-backend-title {
+      margin: 0 0 30px 0;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      background: linear-gradient(90deg, var(--mern-accent), var(--mern-success));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .mern-backend-diagram {
+      max-width: 1000px;
+      width: 100%;
+      overflow-x: auto;
+      border:2px solid var(--fbf-card-border);
+      border-radius: 20px;
+    }
+
+    .mern-backend-svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Shared box style */
+    .mern-box {
+      fill: var(--mern-card-bg);
+      stroke: var(--mern-card-border);
+      stroke-width: 2;
+      filter: url(#neon-glow);
+    }
+
+    .mern-label {
+      font-size: 18px;
+      font-weight: 700;
+      fill: var(--mern-text-main);
+      text-anchor: middle;
+      font-family: Arial, sans-serif;
+    }
+
+    .mern-sub {
+      font-size: 14px;
+      font-weight: 400;
+      fill: var(--mern-text-sub);
+      text-anchor: middle;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Route boxes */
+    .mern-route-box {
+      fill: var(--mern-route-bg);
+      stroke: var(--mern-route-border);
+      stroke-width: 1.5;
+    }
+    .mern-route-text {
+      font-size: 16px;
+      fill: var(--mern-text-main);
+      text-anchor: middle;
+      font-family: Consolas, monospace;
+    }
+
+    /* Mongo parts */
+    .mongo-top,
+    .mongo-bottom {
+      fill: rgba(0, 255, 143, 0.35);
+      stroke: var(--mern-success);
+      stroke-width: 2;
+    }
+    .mongo-body {
+      fill: rgba(0, 255, 143, 0.15);
+      stroke: var(--mern-success);
+      stroke-width: 2;
+    }
+    .mongo-text {
+      font-size: 18px;
+      font-weight: 700;
+      fill: var(--mern-success);
+    }
+
+    /* Flow lines */
+    .mern-flow-line {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+    .req-line {
+      stroke: var(--mern-accent);
+      stroke-dasharray: 8 8;
+      animation: mern-flow-req 2s linear infinite;
+      filter: url(#neon-glow);
+    }
+    .res-line {
+      stroke: var(--mern-success);
+      stroke-dasharray: 8 8;
+      animation: mern-flow-res 2s linear infinite;
+      filter: url(#neon-glow-success);
+    }
+
+    @keyframes mern-flow-req {
+      to { stroke-dashoffset: -16; }
+    }
+    @keyframes mern-flow-res {
+      to { stroke-dashoffset: -16; }
+    }
+
+    /* Responsive tweak: reduce font sizes on narrow screens */
+    @media (max-width: 600px) {
+      .mern-label { font-size: 14px; }
+      .mern-sub { font-size: 12px; }
+      .mern-route-text { font-size: 13px; }
+    }
