@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import '../styles/servicedetails.css'; 
+import ApiDocumentation from "./ApiDocumentation";
 
 export default function ServiceDetails() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ export default function ServiceDetails() {
     },
     "backend-development": {
       title: "Backend Development",
-      text: "We develop scalable backend infrastructures with robust APIs and secure database management.",
+      text: <ApiDocumentation />
     },
   };
 
