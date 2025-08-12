@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoadingSpinner from './components/LoadingSpinner';
+import ProjectsPortfolio from './router/ProjectsPortfolio';
 
 // Lazy imports for route components
 const Header = lazy(() => import('./components/Header'));
@@ -42,6 +43,7 @@ function App() {
             <Route path="/not-found" element={<NotFound />} />
             <Route path="/dsa-learning" element={<DSASection />} />
             <Route path="/service-details/:id" element={<ServiceDetails />} />
+             <Route path="/all-project" element={<ProjectsPortfolio />} />
           </Routes>
         </main>
       </Suspense>

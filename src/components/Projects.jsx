@@ -15,11 +15,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import abstractImage from './11112705.jpg';
  //import image111 from '../assets/111.jpg';
  import image222 from '../assets/web5.png'
+ import { useNavigate } from 'react-router-dom';
 
 
 
 
 const Projects = () => {
+
+  
+  const navigate = useNavigate(); 
+
+
   const projects = [
     {
       id: 1,
@@ -92,6 +98,16 @@ const Projects = () => {
             </div>
           </div>
         ))}
+      </div>
+
+       {/* Common Button */}
+      <div className="projects-btn-container1">
+        <button 
+          className="see-all-projects-btn1" 
+          onClick={() => navigate("/all-project")}
+        >
+          See All Projects
+        </button>
       </div>
     </section>
   );
