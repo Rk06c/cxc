@@ -244,7 +244,7 @@ const ProjectsPortfolio = () => {
       icon:  faWallet,
       description: " Random color generator with RGB sliders, color history, and export options",
       technologies: ["TypeScript", "CoinGecko API", "Chart.js"],
-      githubUrl: "https://github.com/username/",
+      githubUrl: "https://github.com/Rk06c/rgb-generator",
       liveUrl: "rgb-generator-two.vercel.app",
       status: "active"
     },
