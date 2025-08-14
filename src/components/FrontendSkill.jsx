@@ -83,20 +83,20 @@ const FrontendSkill = () => {
   return (
     <>
       {/* Frontend Skills Section */}
-      <section className="tech-section" id="skills">
-        <div className="section-header">
+      <section className="tech-section2" id="skills">
+        <div className="section-header2">
           <h2><FontAwesomeIcon icon={faLaptopCode} /> Technical Skills - Frontend</h2>
           <p>Proficient in a wide range of programming languages and frameworks to build robust applications</p>
         </div>
         
-        <div className="tech-content">
-          <div className="tech-description">
+        <div className="tech-content2">
+          <div className="tech-description2">
             <p>With expertise spanning from low-level programming to modern web development frameworks, I create efficient and scalable solutions tailored to project requirements.</p>
             <p>My skills cover the full stack - from system programming in C/C++ to dynamic frontend interfaces with React and backend services with Spring Boot and Django.</p>
           </div>
           
-          <div className="infinite-scroll-container">
-            <div className="scroller">
+          <div className="infinite-scroll-container2">
+            <div className="scroller2">
               {techCards.map((tech, index) => (
                 <div className="tech-card" key={index}>
                   <div className="tech-icon">
