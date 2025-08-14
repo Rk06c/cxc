@@ -230,12 +230,12 @@ const ProjectsPortfolio = () => {
     },
     {
       id: 5,
-      title: "AI Content Generator",
+      title: "MEMORY GAME",
       icon: faRobot,
-      description: "AI-powered tool for generating blog posts, social media content, and marketing copy",
+      description: " memory card game  dynamic content generation",
       technologies: ["Python", "GPT-3", "FastAPI", "React"],
-      githubUrl: "https://github.com/username/ai-content-generator",
-      liveUrl: "https://ai-demo.example.com",
+      githubUrl: "https://github.com/username/",
+      liveUrl: "https://memory-card-game-xi-three.vercel.app",
       status: "active"
     },
     {
@@ -245,17 +245,17 @@ const ProjectsPortfolio = () => {
       description: " Random color generator with RGB sliders, color history, and export options",
       technologies: ["TypeScript", "CoinGecko API", "Chart.js"],
       githubUrl: "https://github.com/Rk06c/rgb-generator",
-      liveUrl: "rgb-generator-two.vercel.app",
+      liveUrl: "https://rgb-generator-two.vercel.app",
       status: "active"
     },
     {
       id: 7,
-      title: "Restaurant Finder",
+      title: "tic tac toe",
       icon: faUtensils,
       description: "Mobile app for discovering restaurants with filters, reviews, and reservation system",
       technologies: ["React Native", "Google Maps API", "Yelp API"],
-      githubUrl: "https://github.com/username/restaurant-finder",
-      liveUrl: "https://apps.apple.com/demo",
+      githubUrl: "https://github.com/usernam/",
+      liveUrl: "https://tic-tac-toe-silk-seven.vercel.app",
       status: "active"
     },
     {
