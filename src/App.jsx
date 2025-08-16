@@ -2,9 +2,10 @@ import React, { Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoadingSpinner from './components/LoadingSpinner';
+import LoadingMon from './components/LoadingMon';
 import ProjectsPortfolio from './router/ProjectsPortfolio';
 
-// Lazy imports for route components
+// Lazy imports
 const Header = lazy(() => import('./components/Header'));
 const Hero = lazy(() => import('./components/Hero'));
 const About = lazy(() => import('./components/About'));
@@ -21,12 +22,13 @@ const ServiceDetails = lazy(() => import('./router/ServiceDetails'));
 function App() {
   return (
     <Router>
-         <Suspense fallback={<LoadingSpinner />}>
-        <main>
-          <Routes>
-            <Route
-              path="/"
-              element={
+      <main>
+        <Routes>
+          {/* Home page routes with LoadingMon */}
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<LoadingMon />}>
                 <>
                   <Header />
                   <Hero />
@@ -38,15 +40,45 @@ function App() {
                   <Contact />
                   <Footer />
                 </>
-              }
-            />
-            <Route path="/not-found" element={<NotFound />} />
-            <Route path="/dsa-learning" element={<DSASection />} />
-            <Route path="/service-details/:id" element={<ServiceDetails />} />
-             <Route path="/all-project" element={<ProjectsPortfolio />} />
-          </Routes>
-        </main>
-      </Suspense>
+              </Suspense>
+            }
+          />
+
+          {/* Other routes with LoadingSpinner */}
+          <Route
+            path="/not-found"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/dsa-learning"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <DSASection />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/service-details/:id"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ServiceDetails />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/all-project"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ProjectsPortfolio />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </main>
     </Router>
   );
 }
