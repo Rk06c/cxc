@@ -269,7 +269,7 @@ body {
 
 @font-face {
   font-family: 'mr';
-  src: url('../src/font/Corpline\ DEMO.woff2') format('opentype');
+  src: url('../src/font/Corpline%20DEMO.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
