@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
+
 const Projects = () => {
 
   
@@ -42,7 +43,7 @@ const Projects = () => {
       description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
       image: image222,
       tags: ["React", "Node.js", "MongoDB", "TensorFlow"],
-      demoLink: "https://gym-v1-puce.vercel.app",
+      demoLink: "#",
       codeLink: "#"
     },
     {

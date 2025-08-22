@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoadingSpinner from './components/LoadingSpinner';
 import LoadingMon from './components/LoadingMon';
 import ProjectsPortfolio from './router/ProjectsPortfolio';
-
+import { FrontendSkill1, BackendSkill1 } from './components/BothSkill';
 // Lazy imports
 const Header = lazy(() => import('./components/Header'));
 const Hero = lazy(() => import('./components/Hero'));
@@ -13,12 +13,12 @@ const Projects = lazy(() => import('./components/Projects'));
 const Contact = lazy(() => import('./components/Contact'));
 const Service = lazy(() => import('./components/Service'));
 const Footer = lazy(() => import('./components/Footer'));
-const FrontendSkill = lazy(() => import('./components/FrontendSkill'));
-const BackendSkill = lazy(() => import('./components/BackendSkill'));
+//const FrontendSkill = lazy(() => import('./components/FrontendSkill'));
+//const BackendSkill = lazy(() => import('./components/BackendSkill'));
 const NotFound = lazy(() => import('./router/NotFount'));
 const DSASection = lazy(() => import('./router/DSASection'));
 const ServiceDetails = lazy(() => import('./router/ServiceDetails'));
-
+//const {FrontendSkill1, BackendSkill1} = lazy(() => import('./components/BothSkill'));
 function App() {
   return (
     <Router>
@@ -33,8 +33,10 @@ function App() {
                   <Header />
                   <Hero />
                   <About />
-                  <FrontendSkill />
-                  <BackendSkill />
+                  {/* <FrontendSkill />
+                  <BackendSkill /> */}
+                  <FrontendSkill1/>
+                  <BackendSkill1/>
                   <Projects />
                   <Service />
                   <Contact />

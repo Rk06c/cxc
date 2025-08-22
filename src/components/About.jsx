@@ -347,7 +347,7 @@ const About = () => {
             </li>
             <li className="feature-item">
               <strong>System Design Bootcamp</strong><br />
-              TechInstitute, 2022<br />
+              TechInstitute, 2023<br />
               Covered Microservices, Scalability, and Distributed Systems
             </li>
           </ul>
@@ -357,7 +357,7 @@ const About = () => {
           <h2 className="section-title"><FontAwesomeIcon icon={faBriefcase} /> Work Experience</h2>
           <ul className="feature-list">
             <li className="feature-item">
-              <strong>Senior Full Stack Developer</strong><br />
+              {/* <strong>Senior Full Stack Developer</strong><br />
               TechSolutions Inc.,<span style={{ color: 'red' }}> Remote, Jan 2023 - Present</span><br />
               - Led development of a scalable MERN stack application serving 100k+ users<br />
               - Optimized backend APIs, reducing response time by 40% using Node.js and MongoDB<br />
@@ -375,7 +375,7 @@ const About = () => {
               StartupX, New York, NY, Summer 2019<br />
               - Built responsive React.js components for a SaaS platform<br />
               - Assisted in database schema design with MongoDB<br />
-              - Participated in code reviews and agile development processes
+              - Participated in code reviews and agile development processes */}
             </li>
           </ul>
         </div>

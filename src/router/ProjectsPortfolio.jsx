@@ -306,13 +306,13 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Real-Time Chat App',
+    title: 'gym management app',
     icon: faComments,
     description:
       'Web-based messaging application with rooms, direct messages, and message history',
-    technologies: ['Socket.io', 'React', 'Express', 'JWT'],
+    technologies: ['Tan stack', 'React', 'json-server', 'Chakra UI'],
     githubUrl: 'https://github.com/username/chat-app',
-    liveUrl: 'https://chat-demo.example.com',
+    liveUrl: 'https://gym-v2-zeta.vercel.app',
     status: 'active',
   },
   {
