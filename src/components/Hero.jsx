@@ -10,17 +10,18 @@ import {
   faTwitter,
   faInstagram
 } from '@fortawesome/free-brands-svg-icons';
-//import '../styles/Header.css'
 
 const Hero = () => {
   const typingRef = useRef(null);
+  const rkTextRef = useRef(null);
 
   useEffect(() => {
     const roles = [
-      'Full stack developer',
-      'React / Next.js developer',
-      'Backend engineer',
-      'AI enthusiast',
+      'Full Stack Developer',
+      'React / Next.js Developer',
+      'Backend Engineer',
+      'AI Full Stack Developer',
+      'DevOps Engineer',
     ];
     let roleIndex = 0;
     let charIndex = 0;
@@ -58,11 +59,10 @@ const Hero = () => {
   }, []);
 
   return (
-    
     <section className="hero" id="home">
       <div className="hero-content">
         <div className="text-content">
-          <h1>Hi, I'm <span>[🗡️rk🗡️]</span></h1>
+          <h1>Hi, I'm <span className="animated-rk" ref={rkTextRef}>[ rajes kumar  ]</span></h1>
           <div className="typing-text">
             <h2 ref={typingRef}></h2>
             <span className="typing-cursor" aria-hidden="true"></span>
@@ -106,7 +106,6 @@ const Hero = () => {
         <a href="#" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram} /></a>
       </div>
     </section>
-    
   );
 };
 

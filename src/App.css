@@ -274,6 +274,8 @@ body {
   font-style: normal;
 }
 
+
+
 /* @font-face {
   font-family: 'mr';
   src: url('../src/font/Mercy%20Christole.woff2') format('woff2');
@@ -294,6 +296,7 @@ body {
 
 .hero h1 span {
   -webkit-text-fill-color: #ffffff;
+ 
 }
 
 .hero p {
@@ -454,5 +457,116 @@ body {
 
   .nav-links {
     width: 80%;
+  }
+}
+
+
+
+/* Enhanced Animated RK Text with Expanded Color Palette - No Shadows */
+.animated-rk {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #00d4ff,    /* Cyan */
+    #0066ff,    /* Blue */
+    #00ff9d,    /* Green */
+    #00ffe0,    /* Light Cyan */
+    #ff00ff,    /* Magenta */
+    #ff0066,    /* Hot Pink */
+    #ff3300,    /* Red Orange */
+    #ff6600,    /* Orange */
+    #ffcc00,    /* Yellow */
+    #66ff00,    /* Lime Green */
+    #00ff66,    /* Spring Green */
+    #00ffff,    /* Aqua */
+    #0099ff,    /* Light Blue */
+    #9900ff,    /* Purple */
+    #ff0099,    /* Pink */
+    #00d4ff     /* Back to Cyan */
+  );
+  background-size: 1600% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowShift 8s ease-in-out infinite;
+  font-family: inherit;
+}
+
+@keyframes rainbowShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  16.6% {
+    background-position: 16.6% 50%;
+  }
+  33.3% {
+    background-position: 33.3% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  66.6% {
+    background-position: 66.6% 50%;
+  }
+  83.3% {
+    background-position: 83.3% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Alternative faster animation */
+.animated-rk.fast {
+  animation: gradientShift 4s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Keep the original hero h1 span styles but override for animated-rk */
+.hero h1 span.animated-rk {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    #00d4ff,
+    #0066ff,
+    #00ff9d,
+    #00ffe0,
+    #ff00ff,
+    #ff0066,
+    #ff3300,
+    #ff6600,
+    #ffcc00,
+    #66ff00,
+    #00ff66,
+    #00ffff,
+    #0099ff,
+    #9900ff,
+    #ff0099,
+    #00d4ff
+  );
+  background-size: 1600% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: rainbowShift 8s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .animated-rk {
+    animation: rainbowShift 6s ease-in-out infinite;
   }
 }

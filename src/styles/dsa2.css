@@ -1,0 +1,153 @@
+.dsa-container {
+  margin: 0;
+  background: #0d0d0d;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+  padding: 40px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.dsa-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dsa-section h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #00e5ff, #00ff8f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+}
+
+.accordion {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 229, 255, 0.3);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.accordion-header {
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.accordion-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #00e5ff;
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+  color: #00ff8f;
+}
+
+.accordion.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding: 0 20px;
+}
+
+.accordion.active .accordion-content {
+  max-height: 2000px; /* Adjust based on content */
+  padding: 20px;
+}
+
+.code-block {
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 4px solid #00ffcc;
+  border-radius: 6px;
+  padding: 15px;
+  font-size: 0.9em;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.visualization {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.visualization svg {
+  width: 100%;
+  height: auto;
+}
+
+.node {
+  fill: #111;
+  stroke: #00e5ff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px #00ffff);
+}
+
+.label {
+  fill: #ffffff;
+  font-size: 14px;
+  text-anchor: middle;
+}
+
+.edge {
+  stroke: #00ff8f;
+  stroke-width: 2;
+  marker-end: url(#arrow);
+  stroke-dasharray: 6;
+  animation: dash 3s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.algorithm-info {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.time-complexity {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 15px;
+  border-radius: 5px;
+  border-left: 3px solid #00ff8f;
+  margin: 15px 0;
+}
+
+.time-complexity span {
+  color: #00e5ff;
+  font-weight: bold;
+}
+
+.linked-list-node {
+  fill: #111;
+  stroke: #00e5ff;
+  stroke-width: 2;
+}
+
+.linked-list-arrow {
+  stroke: #00ff8f;
+  stroke-width: 2;
+  marker-end: url(#arrow);
+}

@@ -147,3 +147,54 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
     }
+
+    /* Add this to your projects.css file */
+
+.projects-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.see-all-projects-btn,
+.see-all-dsa-projects-btn {
+  padding: 12px 24px;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.see-all-projects-btn {
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+}
+
+.see-all-dsa-projects-btn {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+}
+
+.see-all-projects-btn:hover,
+.see-all-dsa-projects-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .projects-btn-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .see-all-projects-btn,
+  .see-all-dsa-projects-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}

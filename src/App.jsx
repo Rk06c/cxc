@@ -5,6 +5,8 @@ import LoadingSpinner from './components/LoadingSpinner';
 import LoadingMon from './components/LoadingMon';
 import ProjectsPortfolio from './router/ProjectsPortfolio';
 import { FrontendSkill1, BackendSkill1 } from './components/BothSkill';
+
+
 // Lazy imports
 const Header = lazy(() => import('./components/Header'));
 const Hero = lazy(() => import('./components/Hero'));
@@ -59,7 +61,7 @@ function App() {
             path="/dsa-learning"
             element={
               <Suspense fallback={<LoadingSpinner />}>
-                <DSASection />
+                <DSASection />  
               </Suspense>
             }
           />
@@ -79,6 +81,8 @@ function App() {
               </Suspense>
             }
           />
+          
+          
         </Routes>
       </main>
     </Router>
