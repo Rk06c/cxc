@@ -71,7 +71,7 @@ const FrontendSkill1 = () => {
   }, []);
 
   const frontendTechCards = [
-    { icon: faCuttlefish, name: 'C Programming' },
+    // { icon: faCuttlefish, name: 'C Programming' },
     { icon: faHtml5, name: 'HTML' },
     { icon: faCss3Alt, name: 'CSS' },
     { icon: faWind, name: 'Tailwind CSS' },
@@ -98,8 +98,9 @@ const FrontendSkill1 = () => {
         
         <div className="tech-content">
           <div className="tech-description">
-            <p>With expertise spanning from low-level programming to modern web development frameworks, I create efficient and scalable solutions tailored to project requirements.</p>
-            <p>My skills cover the full stack - from system programming in C/C++ to dynamic frontend interfaces with React and backend services with Spring Boot and Django.</p>
+           <p>With expertise spanning from low-level programming to modern web development frameworks, I create efficient and scalable solutions tailored to project requirements.</p>
+<p>My skills cover the full stack — specializing in MERN stack development, with responsive frontend interfaces built using React and optimized backend services powered by Node.js and Express, all integrated with MongoDB for seamless data handling.</p>
+
           </div>
           
           <div className="infinite-scroll-container">
@@ -278,16 +279,16 @@ const BackendSkill1 = () => {
     { icon: faPlug, name: 'API' },
     { icon: faProjectDiagram, name: 'GraphQL' },
     { icon: faExchangeAlt, name: 'WebSocket' },
-    { icon: [faPlus, faCuttlefish], name: 'C++' },
+    // { icon: [faPlus, faCuttlefish], name: 'C++' },
     { icon: faPython, name: 'Python' },
     { icon: faHtml5, name: 'HTML5' },
     { icon: faCss3Alt, name: 'CSS3' },
     { icon: faBootstrap, name: 'Bootstrap' },
     { icon: faReact, name: 'React JS' },
-    { icon: faPhp, name: 'PHP' },
-    { icon: faLaravel, name: 'Laravel' },
-    { icon: faPython, name: 'Django' },
-    { icon: faLeaf, name: 'Spring Boot' }
+    // { icon: faPhp, name: 'PHP' },
+    // { icon: faLaravel, name: 'Laravel' },
+    // { icon: faPython, name: 'Django' },
+    // { icon: faLeaf, name: 'Spring Boot' }
   ];
 
   return (

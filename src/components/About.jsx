@@ -245,7 +245,7 @@ const About = () => {
           <div className="tech-grid">
             <div className="tech-item">
               <div className="tech-icon"><FontAwesomeIcon icon={faReact} /></div>
-              <div>React.js (Advanced)</div>
+              <div>React.js + Next js (Advanced)</div>
             </div>
             <div className="tech-item">
               <div className="tech-icon"><FontAwesomeIcon icon={faNodeJs} /></div>
@@ -336,20 +336,20 @@ const About = () => {
           <ul className="feature-list">
             <li className="feature-item">
               <strong>BE - COMPUTER SIENCES & ENGINEERING</strong><br />
-              KCET (Anna university) -- [2018 - 2022]<br />
+              {/* KCET (Anna university) -- [2018 - 2022]<br /> */}
               Graduated with Honors -- <span style={{ color: 'red' }}>GPA: 7.5/10</span> <br />
               Relevant Coursework:<span style={{ color: 'red' }}>Data Structures, Algorithms, Web Development, Database Systems</span>
             </li>
             <li className="feature-item">
-              <strong>Online Certification in Advanced JavaScript</strong><br />
-              CodeAcademy, 2021<br />
-              Focused on ES6, Async Programming, and Functional JavaScript
+              <strong> Certification in Advanced 'MERN STACK WEB DEVELOPMENT'</strong><br />
+              CSC, <br />
+              Focused on ES6, Async Programming, and Functional JavaScript and React js
             </li>
-            <li className="feature-item">
+            {/* <li className="feature-item">
               <strong>System Design Bootcamp</strong><br />
               TechInstitute, 2023<br />
               Covered Microservices, Scalability, and Distributed Systems
-            </li>
+            </li> */}
           </ul>
         </div>
 

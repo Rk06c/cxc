@@ -215,6 +215,69 @@ const Contact = () => {
           color: #dc3545;
           display: block;
         }
+
+        /* Social Icons Styles */
+        .social-icons {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+        .social-icons a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          color: #ffffff;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          font-size: 18px;
+          position: relative;
+          overflow: hidden;
+        }
+        .social-icons a::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          transition: 0.5s;
+        }
+        .social-icons a:hover::before {
+          left: 100%;
+        }
+        .social-icons a:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(255, 77, 141, 0.3);
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #00d4ff;
+        }
+
+        /* Platform-specific hover colors */
+        .social-icons a:hover:nth-child(1) {
+          color: #E4405F;
+          border-color: #E4405F;
+        }
+        .social-icons a:hover:nth-child(2) {
+          color: #0A66C2;
+          border-color: #0A66C2;
+        }
+        .social-icons a:hover:nth-child(3) {
+          color: #333333;
+          border-color: #333333;
+        }
+        .social-icons a:hover:nth-child(4) {
+          color: #00d4ff;
+          border-color: #00d4ff;
+        }
+
         @media (max-width: 768px) {
           .readme-container1 {
             padding: 15px;
@@ -246,6 +309,14 @@ const Contact = () => {
           .form-control1 {
             padding: 10px 12px;
           }
+          .social-icons {
+            gap: 8px;
+          }
+          .social-icons a {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+          }
         }
       `}</style>
 
@@ -259,19 +330,32 @@ const Contact = () => {
         </div>
 
         <div className="readme-section1">
-          <h2 className="section-title1"><FontAwesomeIcon icon={faAddressCard} /> Contact Information</h2>
+          <h2 className="section-title1"><FontAwesomeIcon icon={faAddressCard} /> Connect With Me</h2>
+          
+          <div className="social-icons">
+            <a href="mailto:rrk.rrk@example.com" aria-label="Email">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/rrk" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/rrk" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://rrk.rkc" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+              <i className="fas fa-globe"></i>
+            </a>
+          </div>
+
           <ul className="feature-list1">
             <li className="feature-item1">
-              <strong>Email:</strong> <a href="mailto:rrk.rrk@example.com" style={{ color: '#00d4ff', textDecoration: 'none' }}> rrk.rrk@example.com </a>
+              <strong>Quick Response:</strong> Typically within 24 hours
             </li>
             <li className="feature-item1">
-              <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rrk" target="_blank" rel="noopener noreferrer" style={{ color: '#00d4ff', textDecoration: 'none' }}>linkedin.com/in/rrk</a>
+              <strong>Availability:</strong> Open for freelance projects and collaborations
             </li>
             <li className="feature-item1">
-              <strong>GitHub:</strong> <a href="https://github.com/rrk" target="_blank" rel="noopener noreferrer" style={{ color: '#00d4ff', textDecoration: 'none' }}>github.com/rrk</a>
-            </li>
-            <li className="feature-item1">
-              <strong>Portfolio:</strong> <a href="https://rrk.rkc" target="_blank" rel="noopener noreferrer" style={{ color: '#00d4ff', textDecoration: 'none' }}>rrk.rkc</a>
+              <strong>Time Zone:</strong> Flexible across time zones
             </li>
           </ul>
         </div>
