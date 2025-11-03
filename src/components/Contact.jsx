@@ -333,13 +333,13 @@ const Contact = () => {
           <h2 className="section-title1"><FontAwesomeIcon icon={faAddressCard} /> Connect With Me</h2>
           
           <div className="social-icons">
-            <a href="mailto:rrk.rrk@example.com" aria-label="Email">
+            <a href="mailto:rrk51608@gmail.com" aria-label="Email">
               <i className="fas fa-envelope"></i>
             </a>
-            <a href="https://www.linkedin.com/in/rrk" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="https://github.com/rrk" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <i className="fab fa-github"></i>
             </a>
             <a href="https://rrk.rkc" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
