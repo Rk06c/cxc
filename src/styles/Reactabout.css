@@ -1,0 +1,206 @@
+/* ReadmeSection.css */
+body {
+  background: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: white;
+  line-height: 1.6;
+}
+
+.readme-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(13, 17, 23, 0.8);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.readme-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.readme-title {
+  font-size: 2em;
+  margin: 0;
+  color: #00d4ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  border-radius: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-primary {
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: shine 2.5s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.badge-secondary {
+  background: rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+  border: 1px solid #00d4ff;
+}
+
+.readme-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.5em;
+  margin: 25px 0 15px;
+  color: #00d4ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tech-item {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border-left: 3px solid #00d4ff;
+}
+
+.tech-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.tech-icon {
+  font-size: 1.2em;
+  color: #00d4ff;
+  width: 25px;
+  text-align: center;
+}
+
+.feature-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.feature-item {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.feature-item::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #00d4ff;
+}
+
+.code-block {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  padding: 15px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  margin: 20px 0;
+  border-left: 3px solid #0066ff;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .readme-container {
+    padding: 15px;
+    margin: 20px 10px;
+  }
+  .readme-title {
+    font-size: 1.4em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .badge {
+    font-size: 0.75em;
+    padding: 4px 8px;
+    margin-left: 0;
+  }
+  .section-title {
+    font-size: 1.2em;
+    gap: 8px;
+  }
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .tech-item {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+  .tech-icon {
+    font-size: 1em;
+    width: 22px;
+  }
+  .code-block {
+    font-size: 0.8em;
+    padding: 10px;
+    word-break: break-word;
+  }
+  .feature-item {
+    font-size: 0.95em;
+  }
+}

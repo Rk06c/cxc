@@ -30,28 +30,28 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "AI Content Platform",
-      description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
+      title: "programing learning website",
+      description: "A full-stack platform for programming learing and course details knows website.",
       image: image222,
-      tags: ["React", "Node.js", "MongoDB", "TensorFlow"],
-      demoLink: "#",
+      tags: ["React", "Node.js", "MongoDB", ],
+      demoLink: "https://cs2-full.vercel.app",
       codeLink: "#"
     },
     {
       id: 2,
-      title: "AI Content Platform",
-      description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
+      title: "member ship website",
+      description: "A full-stack platform for generating and managing member content with user dashboards and analytics.",
       image: image222,
-      tags: ["React", "Node.js", "MongoDB", "TensorFlow"],
-      demoLink: "#",
+      tags: ["React", "Node.js", "MongoDB", ],
+      demoLink: "https://gym-v2-zeta.vercel.app",
       codeLink: "#"
     },
     {
       id: 3,
-      title: "AI Content Platform",
+      title: "AI object detection",
       description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
       image: image222,
-      tags: ["React", "Node.js", "MongoDB", "TensorFlow"],
+      tags: ["React",  "TensorFlow",'coco-models',],
       demoLink: "#",
       codeLink: "#"
     },

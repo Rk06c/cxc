@@ -130,7 +130,7 @@ const Header = () => {
 
       {/* Mobile Resume Button */}
       <a
-        href="/PALANIVELCV.pdf"
+        href="/rkc.pdf"
         className="mobile-resume-btn"
         target="_blank"
         rel="noopener noreferrer"

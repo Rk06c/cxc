@@ -107,6 +107,8 @@ const Contact = () => {
           border-radius: 20px;
           margin-left: 10px;
           vertical-align: middle;
+          position: relative;
+          overflow: hidden;
         }
         .badge-primary1 {
           background: linear-gradient(90deg, #00d4ff, #0066ff);
@@ -116,6 +118,33 @@ const Contact = () => {
           background: rgba(0, 212, 255, 0.2);
           color: #00d4ff;
           border: 1px solid #00d4ff;
+        }
+        /* Infinity Shine Animation for Open to Collaborate Badge */
+        .badge-primary1::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          animation: shine 3s infinite;
+        }
+        @keyframes shine {
+          0% {
+            left: -100%;
+          }
+          20% {
+            left: 100%;
+          }
+          100% {
+            left: 100%;
+          }
         }
         .readme-section1 {
           margin-bottom: 30px;

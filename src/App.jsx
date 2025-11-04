@@ -5,12 +5,14 @@ import LoadingSpinner from './components/LoadingSpinner';
 import LoadingMon from './components/LoadingMon';
 import ProjectsPortfolio from './router/ProjectsPortfolio';
 import { FrontendSkill1, BackendSkill1 } from './components/BothSkill';
+//mport Resume from './router/Resume';
 
 
 // Lazy imports
 const Header = lazy(() => import('./components/Header'));
 const Hero = lazy(() => import('./components/Hero'));
-const About = lazy(() => import('./components/About'));
+//const About = lazy(() => import('./components/About'));
+const ReactAbout = lazy(() => import('./components/ReactAbout'));
 const Projects = lazy(() => import('./components/Projects'));
 const Contact = lazy(() => import('./components/Contact'));
 const Service = lazy(() => import('./components/Service'));
@@ -34,7 +36,7 @@ function App() {
                 <>
                   <Header />
                   <Hero />
-                  <About />
+                  <ReactAbout/>
                   {/* <FrontendSkill />
                   <BackendSkill /> */}
                   <FrontendSkill1/>
@@ -73,6 +75,16 @@ function App() {
               </Suspense>
             }
           />
+
+             {/* <Route
+            path="/resume"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <Resume/>
+              </Suspense>
+            }
+          /> */}
+
           <Route
             path="/all-project"
             element={
