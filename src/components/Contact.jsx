@@ -362,7 +362,7 @@ const Contact = () => {
           <h2 className="section-title1"><FontAwesomeIcon icon={faAddressCard} /> Connect With Me</h2>
           
           <div className="social-icons">
-            <a href="mailto:rrk51608@gmail.com" aria-label="Email">
+            <a href="mailto:rk0506c@gmail.com" aria-label="Email">
               <i className="fas fa-envelope"></i>
             </a>
             <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">

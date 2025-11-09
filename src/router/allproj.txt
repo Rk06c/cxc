@@ -445,3 +445,1298 @@ const ProjectsPortfolio = () => {
 };
 
 export default ProjectsPortfolio;
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faProjectDiagram,
+  faShoppingCart,
+  faVideo,
+  faComments,
+  faTasks,
+  faRobot,
+  faWallet,
+  faUtensils,
+  faMicroscope,
+  faExternalLinkAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import styled, { css, keyframes } from 'styled-components';
+import { debounce } from 'lodash';
+
+// Styled Components
+const pulse = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+`;
+
+const Body = styled.div`
+  background: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: white;
+  line-height: 1.6;
+`;
+
+const ProjectsContainer = styled.div`
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(13, 17, 23, 0.8);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    margin: 20px 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    margin: 10px 5px;
+  }
+`;
+
+const ProjectsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+const ProjectsTitle = styled.h1`
+  font-size: 2em;
+  margin: 0;
+  color: #60a5fa;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+    gap: 6px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1.2em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+`;
+
+const Badge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  font-size: 0.8em;
+  font-weight: bold;
+  border-radius: 20px;
+  line-height: 1;
+
+  @media (max-width: 768px) {
+    font-size: 0.7em;
+    padding: 2px 6px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.65em;
+    padding: 2px 5px;
+  }
+
+  ${({ type }) =>
+    type === 'projects'
+      ? css`
+          background: linear-gradient(90deg, #60a5fa, #3b82f6);
+          color: white;
+        `
+      : css`
+          background: rgba(96, 165, 250, 0.2);
+          color: #60a5fa;
+          border: 1px solid #60a5fa;
+        `}
+`;
+
+const ProjectsTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+
+  @media (max-width: 768px) {
+    display: block;
+    overflow-x: auto;
+  }
+`;
+
+const TableHeader = styled.th`
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  font-weight: bold;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85em;
+  }
+`;
+
+const TableRow = styled.tr`
+  &:hover {
+    background: rgba(96, 165, 250, 0.05);
+  }
+`;
+
+const TableCell = styled.td`
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85em;
+  }
+`;
+
+const ProjectName = styled.div`
+  font-weight: bold;
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    font-size: 0.9em;
+  }
+`;
+
+const ProjectLink = styled.a`
+  color: #93c5fd;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s, background 0.2s;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  &:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+    background: rgba(96, 165, 250, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 3px 6px;
+  }
+`;
+
+const ProjectTech = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 5px;
+
+  @media (max-width: 768px) {
+    gap: 4px;
+  }
+`;
+
+const TechTag = styled.span`
+  background: rgba(96, 165, 250, 0.15);
+  color: #a3d1ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+
+  @media (max-width: 768px) {
+    font-size: 0.7em;
+    padding: 1px 6px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.65em;
+    padding: 1px 5px;
+  }
+`;
+
+const Status = styled.span`
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+
+  ${({ status }) =>
+    status === 'active'
+      ? css`
+          background: #27f7b5ff;
+        `
+      : status === 'archived'
+      ? css`
+          background: #6b7280;
+        `
+      : css`
+          background: #f59e0b;
+          animation: ${pulse} 2s infinite;
+        `}
+`;
+
+const Separator = styled.span`
+  color: #4b5563;
+`;
+
+const MobileCard = styled.div`
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 200px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    min-height: 180px;
+  }
+`;
+
+const MobileCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
+`;
+
+// Project Data
+const projects = [
+  {
+    id: 1,
+    title: 'learning app Platform',
+    icon: faShoppingCart,
+    description:
+      'Full-featured learing plotform',
+    technologies: ['React', 'Node.js', 'MongoDB', 'query'],
+    githubUrl: 'https://github.com/username/ecommerce-platform',
+    liveUrl: 'https://cs2-full.vercel.app',
+    status: 'active',
+  },
+  {
+    id: 2,
+    title: 'Video Streaming Service',
+    icon: faVideo,
+    description:
+      'Netflix-like platform with adaptive streaming, user profiles, and content recommendations',
+    technologies: ['Next.js', 'TypeScript', 'FFmpeg', 'WebRTC'],
+    githubUrl: 'https://github.com/username/video-streaming',
+    liveUrl: 'https://stream-demo.example.com',
+    status: 'wip',
+  },
+  {
+    id: 3,
+    title: 'gym management app',
+    icon: faComments,
+    description:
+      'Web-based messaging application with rooms, direct messages, and message history',
+    technologies: ['Tan stack', 'React', 'json-server', 'Chakra UI'],
+    githubUrl: 'https://github.com/username/chat-app',
+    liveUrl: 'https://gym-v2-zeta.vercel.app',
+    status: 'active',
+  },
+  {
+    id: 4,
+    title: 'Project Management Tool',
+    icon: faTasks,
+    description:
+      'Kanban-style task management with Gantt charts, team collaboration, and analytics',
+    technologies: ['Vue.js', 'Firebase', 'D3.js'],
+    githubUrl: 'https://github.com/username/project-management',
+    liveUrl: 'https://pm-demo.example.com',
+    status: 'archived',
+  },
+  {
+    id: 5,
+    title: 'Memory Game',
+    icon: faRobot,
+    description: 'Memory card game with dynamic content generation',
+    technologies: ['Python', 'GPT-3', 'FastAPI', 'React'],
+    githubUrl: 'https://github.com/username/memory-game',
+    liveUrl: 'https://memory-card-game-xi-three.vercel.app',
+    status: 'active',
+  },
+  {
+    id: 6,
+    title: 'RGB Color Generator',
+    icon: faWallet, // Consider a more relevant icon, e.g., faPalette
+    description: 'Random color generator with RGB sliders, color history, and export options',
+    technologies: ['TypeScript', 'CoinGecko API', 'Chart.js'],
+    githubUrl: 'https://github.com/Rk06c/rgb-generator',
+    liveUrl: 'https://rgb-generator-two.vercel.app',
+    status: 'active',
+  },
+  {
+    id: 7,
+    title: 'Tic Tac Toe',
+    icon: faUtensils, // Consider a more relevant icon, e.g., faGamepad
+    description: 'Interactive Tic Tac Toe game with single and multiplayer modes',
+    technologies: ['React Native', 'Google Maps API', 'Yelp API'],
+    githubUrl: 'https://github.com/username/tic-tac-toe',
+    liveUrl: 'https://tic-tac-toe-silk-seven.vercel.app',
+    status: 'active',
+  },
+  {
+    id: 8,
+    title: 'Health Data Analyzer',
+    icon: faMicroscope,
+    description: 'Web platform for analyzing and visualizing health metrics from wearable devices',
+    technologies: ['Python', 'Pandas', 'Django', 'React'],
+    githubUrl: 'https://github.com/username/health-analyzer',
+    liveUrl: 'https://health-demo.example.com',
+    status: 'archived',
+  },
+];
+
+const ProjectsPortfolio = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Debounced resize handler
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setIsMobile(window.innerWidth <= 768);
+    }, 200);
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      handleResize.cancel(); // Cleanup debounce
+    };
+  }, []);
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case 'active':
+        return 'Active';
+      case 'archived':
+        return 'Archived';
+      case 'wip':
+        return 'In Development';
+      default:
+        return status;
+    }
+  };
+
+  return (
+    <Body>
+      <ProjectsContainer>
+        <ProjectsHeader>
+          <ProjectsTitle>
+            <FontAwesomeIcon icon={faProjectDiagram} aria-hidden="true" />
+            <span>Projects Portfolio</span>
+            <Badge type="projects">SHOWCASE</Badge>
+            <Badge type="count">{projects.length} PROJECTS</Badge>
+          </ProjectsTitle>
+        </ProjectsHeader>
+
+        {isMobile ? (
+          <MobileCardContainer>
+            {projects.map((project) => (
+              <MobileCard key={project.id}>
+                <ProjectName>
+                  <FontAwesomeIcon icon={project.icon} aria-hidden="true" />
+                  {project.title}
+                </ProjectName>
+                <ProjectTech>
+                  {project.technologies.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </ProjectTech>
+                <div style={{ margin: '8px 0', fontSize: '0.85em' }}>{project.description}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <ProjectLink
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    <FontAwesomeIcon icon={faGithub} aria-hidden="true" /> GitHub
+                  </ProjectLink>
+                  <ProjectLink
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View live demo of ${project.title}`}
+                  >
+                    <FontAwesomeIcon icon={faExternalLinkAlt} aria-hidden="true" />
+                    {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
+                  </ProjectLink>
+                </div>
+                <div style={{ marginTop: '8px' }}>
+                  <Status status={project.status} aria-hidden="true" />
+                  <span aria-label={`Status: ${getStatusText(project.status)}`}>
+                    {getStatusText(project.status)}
+                  </span>
+                </div>
+              </MobileCard>
+            ))}
+          </MobileCardContainer>
+        ) : (
+          <ProjectsTable role="grid" aria-label="Projects Portfolio Table">
+            <thead>
+              <tr>
+                <TableHeader scope="col">Project</TableHeader>
+                <TableHeader scope="col">Description</TableHeader>
+                <TableHeader scope="col">Links</TableHeader>
+                <TableHeader scope="col">Status</TableHeader>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project) => (
+                <TableRow key={project.id}>
+                  <TableCell>
+                    <ProjectName>
+                      <FontAwesomeIcon icon={project.icon} aria-hidden="true" />
+                      {project.title}
+                    </ProjectName>
+                    <ProjectTech>
+                      {project.technologies.map((tech) => (
+                        <TechTag key={tech}>{tech}</TechTag>
+                      ))}
+                    </ProjectTech>
+                  </TableCell>
+                  <TableCell>{project.description}</TableCell>
+                  <TableCell>
+                    <ProjectLink
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      <FontAwesomeIcon icon={faGithub} aria-hidden="true" /> GitHub
+                    </ProjectLink>
+                    <Separator aria-hidden="true"> | </Separator>
+                    <ProjectLink
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <FontAwesomeIcon icon={faExternalLinkAlt} aria-hidden="true" />
+                      {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
+                    </ProjectLink>
+                  </TableCell>
+                  <TableCell>
+                    <Status status={project.status} aria-hidden="true" />
+                    <span aria-label={`Status: ${getStatusText(project.status)}`}>
+                      {getStatusText(project.status)}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </tbody>
+          </ProjectsTable>
+        )}
+      </ProjectsContainer>
+    </Body>
+  );
+};
+
+export default ProjectsPortfolio;
+
+
+
+
+
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { 
+  faEnvelope,
+  faAddressCard,
+  faPaperPlane,
+  faHandshake,
+  faSpinner
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [status, setStatus] = useState({
+    message: '',
+    type: '',
+    show: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ message: '', type: '', show: false });
+
+    try {
+      const response = await axios.post('http://localhost:5000/contact', formData);
+      
+      if (response.data.success) {
+        setStatus({
+          message: 'Your message has been sent successfully! I will get back to you soon.',
+          type: 'success',
+          show: true
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setStatus({
+          message: response.data.message || 'There was an error sending your message.',
+          type: 'error',
+          show: true
+        });
+      }
+    } catch (error) {
+      setStatus({
+        message: error.response?.data?.message || 'There was an error sending your message. Please try again later.',
+        type: 'error',
+        show: true
+      });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setStatus(prev => ({ ...prev, show: false }));
+      }, 5000);
+    }
+  };
+
+  return (
+    <>
+      <style>{`
+        .readme-container1 {
+          max-width: 900px;
+          margin: 40px auto;
+          background: rgba(13, 17, 23, 0.8);
+          border-radius: 10px;
+          padding: 30px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .readme-header1 {
+          display: flex;
+          align-items: center;
+          margin-bottom: 30px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .readme-title1 {
+          font-size: 2em;
+          margin: 0;
+          color: #00d4ff;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .badge {
+          display: inline-block;
+          padding: 3px 8px;
+          font-size: 0.8em;
+          font-weight: bold;
+          border-radius: 20px;
+          margin-left: 10px;
+          vertical-align: middle;
+          position: relative;
+          overflow: hidden;
+        }
+        .badge-primary1 {
+          background: linear-gradient(90deg, #00d4ff, #0066ff);
+          color: white;
+        }
+        .badge-secondary1 {
+          background: rgba(0, 212, 255, 0.2);
+          color: #00d4ff;
+          border: 1px solid #00d4ff;
+        }
+        /* Infinity Shine Animation for Open to Collaborate Badge */
+        .badge-primary1::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          animation: shine 3s infinite;
+        }
+        @keyframes shine {
+          0% {
+            left: -100%;
+          }
+          20% {
+            left: 100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+        .readme-section1 {
+          margin-bottom: 30px;
+        }
+        .section-title1 {
+          font-size: 1.5em;
+          margin: 25px 0 15px;
+          color: #00d4ff;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .feature-list1 {
+          list-style-type: none;
+          padding-left: 0;
+        }
+        .feature-item1 {
+          margin-bottom: 12px;
+          padding-left: 25px;
+          position: relative;
+        }
+        .feature-item1::before {
+          content: '\\f00c';
+          font-family: 'Font Awesome 6 Free';
+          font-weight: 900;
+          position: absolute;
+          left: 0;
+          color: #00d4ff;
+        }
+        .contact-form {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin-top: 20px;
+        }
+        .form-group1 {
+          display: flex;
+          flex-direction: column;
+        }
+        .form-group1 label {
+          margin-bottom: 8px;
+          color: #00d4ff;
+          font-weight: bold;
+        }
+        .form-control1 {
+          padding: 12px 15px;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 5px;
+          color: white;
+          font-size: 1em;
+          transition: all 0.3s ease;
+        }
+        .form-control1:focus {
+          outline: none;
+          border-color: #00d4ff;
+          box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+        }
+        textarea.form-control1 {
+          min-height: 150px;
+          resize: vertical;
+        }
+        .submit-btn1 {
+          background: linear-gradient(90deg, #00d4ff, #0066ff);
+          color: white;
+          border: none;
+          padding: 12px 25px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1em;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          width: fit-content;
+        }
+        .submit-btn1:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+        .submit-btn1:active {
+          transform: translateY(0);
+        }
+        .status-message1 {
+          padding: 12px 15px;
+          border-radius: 5px;
+          margin-top: 15px;
+          display: none;
+        }
+        .status-message1.success {
+          background: rgba(40, 167, 69, 0.2);
+          border: 1px solid rgba(40, 167, 69, 0.5);
+          color: #28a745;
+          display: block;
+        }
+        .status-message1.error {
+          background: rgba(220, 53, 69, 0.2);
+          border: 1px solid rgba(220, 53, 69, 0.5);
+          color: #dc3545;
+          display: block;
+        }
+
+        /* Social Icons Styles */
+        .social-icons {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-bottom: 20px;
+          flex-wrap: wrap;
+        }
+        .social-icons a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          color: #ffffff;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          font-size: 18px;
+          position: relative;
+          overflow: hidden;
+        }
+        .social-icons a::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          transition: 0.5s;
+        }
+        .social-icons a:hover::before {
+          left: 100%;
+        }
+        .social-icons a:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(255, 77, 141, 0.3);
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #00d4ff;
+        }
+
+        /* Platform-specific hover colors */
+        .social-icons a:hover:nth-child(1) {
+          color: #E4405F;
+          border-color: #E4405F;
+        }
+        .social-icons a:hover:nth-child(2) {
+          color: #0A66C2;
+          border-color: #0A66C2;
+        }
+        .social-icons a:hover:nth-child(3) {
+          color: #333333;
+          border-color: #333333;
+        }
+        .social-icons a:hover:nth-child(4) {
+          color: #00d4ff;
+          border-color: #00d4ff;
+        }
+
+        @media (max-width: 768px) {
+          .readme-container1 {
+            padding: 15px;
+            margin: 20px 10px;
+          }
+          .readme-title1 {
+            font-size: 1.4em;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+          }
+          .badge {
+            font-size: 0.7em;
+            padding: 2px 6px;
+            margin-left: 0;
+          }
+          .section-title1 {
+            font-size: 1.2em;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+          }
+          .feature-item1 {
+            font-size: 0.95em;
+          }
+          .contact-form {
+            gap: 15px;
+          }
+          .form-control1 {
+            padding: 10px 12px;
+          }
+          .social-icons {
+            gap: 8px;
+          }
+          .social-icons a {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+          }
+        }
+      `}</style>
+
+      <div className="readme-container1" id="contact">
+        <div className="readme-header1">
+          <h1 className="readme-title1">
+            <FontAwesomeIcon icon={faEnvelope} /> Contact Me
+            <span className="badge badge-primary1">Open to Collaborate</span>
+            <span className="badge badge-secondary1">MERN Expert</span>
+          </h1>
+        </div>
+
+        <div className="readme-section1">
+          <h2 className="section-title1"><FontAwesomeIcon icon={faAddressCard} /> Connect With Me</h2>
+          
+          <div className="social-icons">
+            <a href="mailto:rrk51608@gmail.com" aria-label="Email">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://rrk.rkc" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+              <i className="fas fa-globe"></i>
+            </a>
+          </div>
+
+          <ul className="feature-list1">
+            <li className="feature-item1">
+              <strong>Quick Response:</strong> Typically within 24 hours
+            </li>
+            <li className="feature-item1">
+              <strong>Availability:</strong> Open for freelance projects and collaborations
+            </li>
+            <li className="feature-item1">
+              <strong>Time Zone:</strong> Flexible across time zones
+            </li>
+          </ul>
+        </div>
+
+        <div className="readme-section1">
+          <h2 className="section-title1"><FontAwesomeIcon icon={faPaperPlane} /> Send a Message</h2>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="form-group1">
+              <label htmlFor="name">Your Name</label>
+              <input type="text" id="name" name="name" className="form-control1" value={formData.name} onChange={handleChange} required />
+            </div>
+            <div className="form-group1">
+              <label htmlFor="email">Email Address</label>
+              <input type="email" id="email" name="email" className="form-control1" value={formData.email} onChange={handleChange} required />
+            </div>
+            <div className="form-group1">
+              <label htmlFor="subject">Subject</label>
+              <input type="text" id="subject" name="subject" className="form-control1" value={formData.subject} onChange={handleChange} required />
+            </div>
+            <div className="form-group1">
+              <label htmlFor="message">Your Message</label>
+              <textarea id="message" name="message" className="form-control1" value={formData.message} onChange={handleChange} required></textarea>
+            </div>
+            <button type="submit" className="submit-btn1" disabled={isSubmitting}>
+              {isSubmitting ? (<><FontAwesomeIcon icon={faSpinner} spin /> Sending...</>) : (<><FontAwesomeIcon icon={faPaperPlane} /> Send Message</>)}
+            </button>
+            {status.show && (
+              <div className={`status-message1 ${status.type}`}>
+                {status.message}
+              </div>
+            )}
+          </form>
+        </div>
+
+        <div className="readme-section1">
+          <h2 className="section-title1"><FontAwesomeIcon icon={faHandshake} /> Get in Touch</h2>
+          <p>
+            I'm always excited to connect with like-minded professionals, discuss potential projects, or explore collaboration opportunities.
+          </p>
+          <ul className="feature-list1">
+            <li className="feature-item1">Available for freelance projects and consulting</li>
+            <li className="feature-item1">Open to contributing to open-source initiatives</li>
+            <li className="feature-item1">Happy to mentor or discuss DSA and web development</li>
+            <li className="feature-item1">Quick response time, typically within 24 hours</li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Contact;
+
+
+
+
+
+   import React from 'react';
+import '../styles/projects.css';
+import { 
+  faCodeBranch,
+  faExternalLinkAlt
+} from '@fortawesome/free-solid-svg-icons';
+import { 
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Import your project images
+// import wolfIllustration from './wolf-illustration.jpg';
+// import leafImage from './🌿.jpg';
+// import abstractImage from './11112705.jpg';
+ //import image111 from '../assets/111.jpg';
+ import image222 from '../assets/web5.png'
+ import { useNavigate } from 'react-router-dom';
+
+
+
+
+
+const Projects = () => {
+
+  
+  const navigate = useNavigate(); 
+
+
+  const projects = [
+    {
+      id: 1,
+      title: "programing learning website",
+      description: "A full-stack platform for programming learing and course details knows website.",
+      image: image222,
+      tags: ["React", "Node.js", "MongoDB", ],
+      demoLink: "https://cs2-full.vercel.app",
+      codeLink: "#"
+    },
+    {
+      id: 2,
+      title: "member ship website",
+      description: "A full-stack platform for generating and managing member content with user dashboards and analytics.",
+      image: image222,
+      tags: ["React", "Node.js", "MongoDB", ],
+      demoLink: "https://gym-v2-zeta.vercel.app",
+      codeLink: "#"
+    },
+    {
+      id: 3,
+      title: "AI object detection",
+      description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
+      image: image222,
+      tags: ["React",  "TensorFlow",'coco-models',],
+      demoLink: "#",
+      codeLink: "#"
+    },
+    // {
+    //   id: 4,
+    //   title: "Modern E-Commerce",
+    //   description: "Feature-rich online store with payment integration, product filtering, and admin dashboard.",
+    //   image: '',
+    //   tags: ["Next.js", "Tailwind CSS", "Stripe", "Firebase"],
+    //   demoLink: "#",
+    //   codeLink: "#"
+    // }
+  ];
+
+  return (
+    <section className="projects-section" id="projects">
+      <h2><FontAwesomeIcon icon={faCodeBranch} /> My Projects</h2>
+      
+      <div className="projects-container">
+        {projects.map((project) => (
+          <div className="project-card" key={project.id}>
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="project-image" 
+            />
+            <div className="project-content">
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">
+                {project.description}
+              </p>
+              <div className="project-tech">
+                {project.tags.map((tag, index) => (
+                  <span className="tech-tag" key={index}>{tag}</span>
+                ))}
+              </div>
+              <div className="project-links">
+                <a href={project.demoLink} className="project-link demo-link">
+                  <FontAwesomeIcon icon={faExternalLinkAlt} /> Live Demo
+                </a>
+                <a href={project.codeLink} className="project-link code-link">
+                  <FontAwesomeIcon icon={faGithub} /> View Code
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+       {/* Common Button */}
+      <div className="projects-btn-container1">
+        <button 
+          className="see-all-projects-btn1" 
+          onClick={() => navigate("/all-project")}
+        >
+          See All Projects
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default Projects; 
+   Gradient for PROJECT777 all headings
+    .projects-section h1, h2, h3 {
+      background: linear-gradient(90deg, #00d4ff, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      
+    }
+
+   .projects-section h2 {
+      font-size: 2em;
+      margin: 10px 0 30px;
+      text-align: center;
+    }
+
+    /* Projects Section */
+    .projects-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    /* Project Card */
+    .project-card {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+    }
+
+    .project-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      border-bottom: 2px solid #00d4ff;
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #00d4ff;
+    }
+
+    .project-description {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 0.95em;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      background: rgba(0, 212, 255, 0.1);
+      color: #00d4ff;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+    }
+
+    .demo-link {
+      background: linear-gradient(90deg, #00d4ff, #0066ff);
+    }
+
+    .code-link {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #00d4ff;
+    }
+
+    .project-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .projects-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+
+
+    .projects-btn-container1 {
+  text-align: center;
+  margin-top: 2.5rem ;
+}
+
+
+
+
+    .see-all-projects-btn1 {
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #00d4ff, #0066ff);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .see-all-projects-btn1:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Add this to your projects.css file */
+
+.projects-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.see-all-projects-btn,
+.see-all-dsa-projects-btn {
+  padding: 12px 24px;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.see-all-projects-btn {
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+}
+
+.see-all-dsa-projects-btn {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+}
+
+.see-all-projects-btn:hover,
+.see-all-dsa-projects-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .projects-btn-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .see-all-projects-btn,
+  .see-all-dsa-projects-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}

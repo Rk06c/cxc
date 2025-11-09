@@ -11,6 +11,11 @@ import {
   faUtensils,
   faMicroscope,
   faExternalLinkAlt,
+  faLock,
+  faUnlock,
+  faEye,
+  faEyeSlash,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import styled, { css, keyframes } from 'styled-components';
@@ -185,6 +190,7 @@ const ProjectLink = styled.a`
   transition: color 0.2s, background 0.2s;
   padding: 4px 8px;
   border-radius: 4px;
+  cursor: pointer;
 
   &:hover {
     color: #60a5fa;
@@ -194,6 +200,20 @@ const ProjectLink = styled.a`
 
   @media (max-width: 768px) {
     padding: 3px 6px;
+  }
+`;
+
+const LockedLink = styled.span`
+  color: #ef4444;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
   }
 `;
 
@@ -280,14 +300,132 @@ const MobileCardContainer = styled.div`
   }
 `;
 
+const PasswordModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const PasswordForm = styled.div`
+  background: rgba(13, 17, 23, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #93c5fd;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+  }
+`;
+
+const PasswordInputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  margin: 15px 0;
+`;
+
+const PasswordInput = styled.input`
+  width: 100%;
+  padding: 12px 45px 12px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+
+  &:focus {
+    outline: none;
+    border-color: #60a5fa;
+  }
+`;
+
+const EyeIcon = styled.span`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #93c5fd;
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover {
+    color: #60a5fa;
+  }
+`;
+
+const PasswordButton = styled.button`
+  background: #60a5fa;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 10px;
+
+  &:hover {
+    background: #3b82f6;
+  }
+
+  &:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #ef4444;
+  margin-top: 10px;
+  font-size: 0.9em;
+`;
+
+const ProjectInfo = styled.div`
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(96, 165, 250, 0.1);
+  border-radius: 5px;
+  border-left: 3px solid #60a5fa;
+`;
+
 // Project Data
 const projects = [
   {
     id: 1,
-    title: 'learning app Platform',
+    title: 'Learning App Platform',
     icon: faShoppingCart,
-    description:
-      'Full-featured learing plotform',
+    description: 'Full-featured learning platform',
     technologies: ['React', 'Node.js', 'MongoDB', 'query'],
     githubUrl: 'https://github.com/username/ecommerce-platform',
     liveUrl: 'https://cs2-full.vercel.app',
@@ -297,8 +435,7 @@ const projects = [
     id: 2,
     title: 'Video Streaming Service',
     icon: faVideo,
-    description:
-      'Netflix-like platform with adaptive streaming, user profiles, and content recommendations',
+    description: 'Netflix-like platform with adaptive streaming, user profiles, and content recommendations',
     technologies: ['Next.js', 'TypeScript', 'FFmpeg', 'WebRTC'],
     githubUrl: 'https://github.com/username/video-streaming',
     liveUrl: 'https://stream-demo.example.com',
@@ -306,10 +443,9 @@ const projects = [
   },
   {
     id: 3,
-    title: 'gym management app',
+    title: 'Gym Management App',
     icon: faComments,
-    description:
-      'Web-based messaging application with rooms, direct messages, and message history',
+    description: 'Web-based messaging application with rooms, direct messages, and message history',
     technologies: ['Tan stack', 'React', 'json-server', 'Chakra UI'],
     githubUrl: 'https://github.com/username/chat-app',
     liveUrl: 'https://gym-v2-zeta.vercel.app',
@@ -319,9 +455,8 @@ const projects = [
     id: 4,
     title: 'Project Management Tool',
     icon: faTasks,
-    description:
-      'Kanban-style task management with Gantt charts, team collaboration, and analytics',
-    technologies: ['Vue.js', 'Firebase', 'D3.js'],
+    description: 'Kanban-style task management with Gantt charts, team collaboration, and analytics',
+    technologies: ['react', 'Firebase', 'D3.js'],
     githubUrl: 'https://github.com/username/project-management',
     liveUrl: 'https://pm-demo.example.com',
     status: 'archived',
@@ -331,7 +466,7 @@ const projects = [
     title: 'Memory Game',
     icon: faRobot,
     description: 'Memory card game with dynamic content generation',
-    technologies: ['Python', 'GPT-3', 'FastAPI', 'React'],
+    technologies: ['react', 'localsession',],
     githubUrl: 'https://github.com/username/memory-game',
     liveUrl: 'https://memory-card-game-xi-three.vercel.app',
     status: 'active',
@@ -339,9 +474,9 @@ const projects = [
   {
     id: 6,
     title: 'RGB Color Generator',
-    icon: faWallet, // Consider a more relevant icon, e.g., faPalette
+    icon: faWallet,
     description: 'Random color generator with RGB sliders, color history, and export options',
-    technologies: ['TypeScript', 'CoinGecko API', 'Chart.js'],
+    technologies: ['react', 'Chart.js'],
     githubUrl: 'https://github.com/Rk06c/rgb-generator',
     liveUrl: 'https://rgb-generator-two.vercel.app',
     status: 'active',
@@ -349,9 +484,10 @@ const projects = [
   {
     id: 7,
     title: 'Tic Tac Toe',
-    icon: faUtensils, // Consider a more relevant icon, e.g., faGamepad
+    icon: faUtensils,
     description: 'Interactive Tic Tac Toe game with single and multiplayer modes',
-    technologies: ['React Native', 'Google Maps API', 'Yelp API'],
+    technologies: ['React ', 'mangoose', 'local-storage'
+    ],
     githubUrl: 'https://github.com/username/tic-tac-toe',
     liveUrl: 'https://tic-tac-toe-silk-seven.vercel.app',
     status: 'active',
@@ -361,7 +497,7 @@ const projects = [
     title: 'Health Data Analyzer',
     icon: faMicroscope,
     description: 'Web platform for analyzing and visualizing health metrics from wearable devices',
-    technologies: ['Python', 'Pandas', 'Django', 'React'],
+    technologies: [ 'mysql', 'express', 'React'],
     githubUrl: 'https://github.com/username/health-analyzer',
     liveUrl: 'https://health-demo.example.com',
     status: 'archived',
@@ -370,6 +506,12 @@ const projects = [
 
 const ProjectsPortfolio = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [pendingLink, setPendingLink] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [currentProject, setCurrentProject] = useState(null);
 
   // Debounced resize handler
   useEffect(() => {
@@ -399,6 +541,100 @@ const ProjectsPortfolio = () => {
     }
   };
 
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    if (password === '@@2306Password@@') {
+      setError('');
+      setPassword('');
+      setShowPassword(false);
+      
+      // Open the pending link
+      if (pendingLink) {
+        window.open(pendingLink, '_blank', 'noopener,noreferrer');
+      }
+      
+      // Close modal after a brief delay
+      setTimeout(() => {
+        setShowPasswordModal(false);
+        setPendingLink(null);
+        setCurrentProject(null);
+      }, 500);
+    } else {
+      setError('Incorrect password. Please try again.');
+    }
+  };
+
+  const handleLinkClick = (url, project, e) => {
+    e.preventDefault();
+    
+    setPendingLink(url);
+    setCurrentProject(project);
+    setShowPasswordModal(true);
+    setError('');
+    setPassword('');
+  };
+
+  const handleCloseModal = () => {
+    setShowPasswordModal(false);
+    setPendingLink(null);
+    setCurrentProject(null);
+    setError('');
+    setPassword('');
+    setShowPassword(false);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  // Close modal when clicking outside
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
+  };
+
+  const renderLinks = (project) => {
+    return (
+      <>
+        <LockedLink
+          onClick={(e) => handleLinkClick(project.githubUrl, project, e)}
+          aria-label={`Enter password to view ${project.title} on GitHub`}
+        >
+          <FontAwesomeIcon icon={faLock} aria-hidden="true" /> GitHub
+        </LockedLink>
+        <Separator aria-hidden="true"> | </Separator>
+        <LockedLink
+          onClick={(e) => handleLinkClick(project.liveUrl, project, e)}
+          aria-label={`Enter password to view live demo of ${project.title}`}
+        >
+          <FontAwesomeIcon icon={faLock} aria-hidden="true" />
+          {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
+        </LockedLink>
+      </>
+    );
+  };
+
+  const renderMobileLinks = (project) => {
+    return (
+      <>
+        <LockedLink
+          onClick={(e) => handleLinkClick(project.githubUrl, project, e)}
+          aria-label={`Enter password to view ${project.title} on GitHub`}
+        >
+          <FontAwesomeIcon icon={faLock} aria-hidden="true" /> GitHub
+        </LockedLink>
+        <LockedLink
+          onClick={(e) => handleLinkClick(project.liveUrl, project, e)}
+          aria-label={`Enter password to view live demo of ${project.title}`}
+        >
+          <FontAwesomeIcon icon={faLock} aria-hidden="true" />
+          {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
+        </LockedLink>
+      </>
+    );
+  };
+
   return (
     <Body>
       <ProjectsContainer>
@@ -406,7 +642,7 @@ const ProjectsPortfolio = () => {
           <ProjectsTitle>
             <FontAwesomeIcon icon={faProjectDiagram} aria-hidden="true" />
             <span>Projects Portfolio</span>
-            <Badge type="projects">SHOWCASE</Badge>
+            <Badge type="projects">PROTECTED</Badge>
             <Badge type="count">{projects.length} PROJECTS</Badge>
           </ProjectsTitle>
         </ProjectsHeader>
@@ -426,23 +662,7 @@ const ProjectsPortfolio = () => {
                 </ProjectTech>
                 <div style={{ margin: '8px 0', fontSize: '0.85em' }}>{project.description}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <ProjectLink
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} on GitHub`}
-                  >
-                    <FontAwesomeIcon icon={faGithub} aria-hidden="true" /> GitHub
-                  </ProjectLink>
-                  <ProjectLink
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View live demo of ${project.title}`}
-                  >
-                    <FontAwesomeIcon icon={faExternalLinkAlt} aria-hidden="true" />
-                    {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
-                  </ProjectLink>
+                  {renderMobileLinks(project)}
                 </div>
                 <div style={{ marginTop: '8px' }}>
                   <Status status={project.status} aria-hidden="true" />
@@ -479,24 +699,7 @@ const ProjectsPortfolio = () => {
                   </TableCell>
                   <TableCell>{project.description}</TableCell>
                   <TableCell>
-                    <ProjectLink
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <FontAwesomeIcon icon={faGithub} aria-hidden="true" /> GitHub
-                    </ProjectLink>
-                    <Separator aria-hidden="true"> | </Separator>
-                    <ProjectLink
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View live demo of ${project.title}`}
-                    >
-                      <FontAwesomeIcon icon={faExternalLinkAlt} aria-hidden="true" />
-                      {project.liveUrl.includes('apps.apple.com') ? 'App Store' : 'Live Demo'}
-                    </ProjectLink>
+                    {renderLinks(project)}
                   </TableCell>
                   <TableCell>
                     <Status status={project.status} aria-hidden="true" />
@@ -510,6 +713,64 @@ const ProjectsPortfolio = () => {
           </ProjectsTable>
         )}
       </ProjectsContainer>
+
+      {showPasswordModal && (
+        <PasswordModal onClick={handleBackdropClick}>
+          <PasswordForm>
+            <CloseButton 
+              onClick={handleCloseModal}
+              aria-label="Close password modal"
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </CloseButton>
+            
+            <h3 style={{ color: '#60a5fa', marginBottom: '10px' }}>
+              <FontAwesomeIcon icon={faLock} aria-hidden="true" /> Protected Content
+            </h3>
+            <p style={{ marginBottom: '20px', color: '#93c5fd' }}>
+              Enter password to access project links
+            </p>
+            
+            {currentProject && (
+              <ProjectInfo>
+                <div style={{ fontWeight: 'bold', color: '#60a5fa' }}>
+                  <FontAwesomeIcon icon={currentProject.icon} style={{ marginRight: '8px' }} />
+                  {currentProject.title}
+                </div>
+                <div style={{ fontSize: '0.9em', marginTop: '5px' }}>
+                  {pendingLink?.includes('github.com') ? 'GitHub Repository' : 'Live Demo'}
+                </div>
+              </ProjectInfo>
+            )}
+
+            <form onSubmit={handlePasswordSubmit}>
+              <PasswordInputWrapper>
+                <PasswordInput
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoFocus
+                />
+                <EyeIcon 
+                  onClick={togglePasswordVisibility}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </EyeIcon>
+              </PasswordInputWrapper>
+              <PasswordButton type="submit" disabled={!password}>
+                <FontAwesomeIcon icon={faUnlock} style={{ marginRight: '8px' }} />
+                Unlock & Open Link
+              </PasswordButton>
+            </form>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            <p style={{ marginTop: '15px', fontSize: '0.8em', color: '#6b7280' }}>
+              Password required for each project access
+            </p>
+          </PasswordForm>
+        </PasswordModal>
+      )}
     </Body>
   );
 };
