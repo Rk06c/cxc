@@ -50,9 +50,9 @@ const Projects = () => {
       id: 3,
       title: "AI object detection",
       description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
-      image: image222,
+      image:image222,
       tags: ["React", "TensorFlow", 'coco-models'],
-      demoLink: "#",
+      demoLink: "https://anime-online-ecru.vercel.app/",
       codeLink: "#"
     },
   ];

@@ -483,7 +483,7 @@ const projects = [
   },
   {
     id: 7,
-    title: 'Tic Tac Toe',
+    title: 'Tic Tac Toe Game',
     icon: faUtensils,
     description: 'Interactive Tic Tac Toe game with single and multiplayer modes',
     technologies: ['React ', 'mangoose', 'local-storage'
@@ -502,6 +502,26 @@ const projects = [
     liveUrl: 'https://health-demo.example.com',
     status: 'archived',
   },
+  {
+    id: 9,
+    title: 'React query project',
+    icon: faExternalLinkAlt,
+    description: 'A React project demonstrating advanced data fetching and caching techniques using React Query.',
+    technologies: ['React', 'React Query', 'Axios'],
+    githubUrl: '',
+    liveUrl: 'https://react-query-mu.vercel.app/',
+    status: 'active',
+  },
+  {
+    id: 10,
+    title: 'anime app',
+    icon: faExternalLinkAlt,
+    description: 'An anime web application that allows users to browse, search, and view details about various anime series and movies.',
+    technologies: ['React', 'API Integration', 'react-router','tank-stack','context-api'],
+    githubUrl: '',
+    liveUrl: 'https://anime-online-ecru.vercel.app/',
+    status: 'active',
+  }
 ];
 
 const ProjectsPortfolio = () => {
