@@ -453,13 +453,13 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Project Management Tool',
+    title: 'weather app',
     icon: faTasks,
-    description: 'Kanban-style task management with Gantt charts, team collaboration, and analytics',
-    technologies: ['react', 'Firebase', 'D3.js'],
+    description: 'weather app it shows weather of any city with forecast and other details',
+    technologies: ['react js', 'weather-map', 'openApi'],
     githubUrl: 'https://github.com/username/project-management',
-    liveUrl: 'https://pm-demo.example.com',
-    status: 'archived',
+    liveUrl: 'weather-app-25-seven.vercel.app',
+    status: 'active',
   },
   {
     id: 5,

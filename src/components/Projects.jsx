@@ -48,9 +48,9 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "AI object detection",
+      title: "AI object detection website",
       description: "A full-stack platform for generating and managing AI-created content with user dashboards and analytics.",
-      image:image222,
+      image:"https://res.cloudinary.com/dbc3vqwhm/image/upload/v1763547374/wish_sryioj.png",
       tags: ["React", "TensorFlow", 'coco-models'],
       demoLink: "https://anime-online-ecru.vercel.app/",
       codeLink: "#"
