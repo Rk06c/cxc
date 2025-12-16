@@ -458,7 +458,7 @@ const projects = [
     description: 'weather app it shows weather of any city with forecast and other details',
     technologies: ['react js', 'weather-map', 'openApi'],
     githubUrl: 'https://github.com/username/project-management',
-    liveUrl: 'weather-app-25-seven.vercel.app',
+    liveUrl: 'https://weather-app-25-seven.vercel.app',
     status: 'active',
   },
   {
